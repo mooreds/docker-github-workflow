@@ -8,3 +8,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the stack
         run: docker-compose up -d
+      - name: Ping the server
+        run: curl http://localhost:9011

@@ -8,8 +8,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Echo something
         run: echo "hi"
+      - name: Sleep
+        run: sleep 30
       - name: Curl localhost
         run: curl http://localhost:9011
+      - name: Curl fusionauth
+        run: curl http://fusionauth:9011
     services:
       # Label used to access the service container
       postgres:

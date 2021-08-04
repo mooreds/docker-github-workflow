@@ -28,8 +28,6 @@ jobs:
       fusionauth:
         # Docker Hub image
         image: fusionauth/fusionauth-app:latest
-        depends_on:
-          - postgres
         ports:
           - 9011:9011
         env:

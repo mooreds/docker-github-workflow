@@ -9,7 +9,7 @@ jobs:
       - name: Echo something
         run: echo "hi"
       - name: Curl localhost
-        run: curl http://fusionauth:9011
+        run: curl http://localhost:9011
     services:
       # Label used to access the service container
       postgres:

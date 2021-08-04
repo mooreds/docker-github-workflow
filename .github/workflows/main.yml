@@ -6,8 +6,10 @@ jobs:
     name: A job to stand up FusionAuth
     steps:
       - uses: actions/checkout@v2
-      - name: Build the stack
+      - name: Echo something
         run: echo "hi"
+      - name: Curl localhost
+        run: curl http://fusionauth:9011
     services:
       # Label used to access the service container
       postgres:
@@ -26,6 +28,10 @@ jobs:
       fusionauth:
         # Docker Hub image
         image: fusionauth/fusionauth-app:latest
+        depends_on:
+          - postgres
+        ports:
+          - 9011:9011
         env:
           DATABASE_URL: jdbc:postgresql://postgres:5432/fusionauth
           DATABASE_ROOT_USERNAME: ${POSTGRES_USER}

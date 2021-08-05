@@ -7,42 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to stand up FusionAuth
     env:
-      # if you change these, change them in the services container too
       POSTGRES_USER: postgres2
       POSTGRES_PASSWORD: postgres2
       FUSIONAUTH_VERSION: 1.29.0
     steps:
       - uses: actions/checkout@v2
-      #- name: Create database
-        #run: bash create-db.sh $POSTGRES_USER $POSTGRES_PASSWORD $FUSIONAUTH_VERSION
-      #- name: Start FusionAuth
-        #run: bash start-fusionauth.sh $POSTGRES_USER $POSTGRES_PASSWORD $FUSIONAUTH_VERSION
       - name: up
         run: docker-compose up -d
       - name: Sleep
         run: sleep 30
-      #- name: logs for debugging
-        #run: docker logs `docker ps|grep fusionauth|awk '{print $1}'`
       - name: Interact with FusionAuth
         run: "curl -vv -H 'Authorization: 4737ea8520bd454caabb7cb3d36e14bc1832c0d3f70a4189b82598670f11b1bd' http://localhost:9011/api/tenant |grep allowEmailChangeWhenGated"
-      #- name: Shut down FusionAuth
-        #run: docker stop `docker ps|grep fusionauth|awk '{print $1}'`
       - name: Shut down FusionAuth
         run: docker-compose down
-    #services:
-      ## Label used to access the service container
-      #postgres:
-        ## Docker Hub image
-        #image: postgres
-        ## Provide the password for postgres
-        #env:
-          #POSTGRES_USER: postgres2
-          #POSTGRES_PASSWORD: postgres2
-        #ports:
-          #- 5432:5432
-        ## Set health checks to wait until postgres has started
-        #options: >-
-          #--health-cmd pg_isready
-          #--health-interval 10s
-          #--health-timeout 5s
-          ##--health-retries 5

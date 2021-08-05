@@ -10,8 +10,8 @@ jobs:
         run: echo "hi"
       - name: sleep
         run: sleep 15
-      - name: docker containers
-        run: docker containers ls
+      - name: docker container
+        run: docker container ls
       - name: docker networks
         run: docker network ls
       - name: Curl localhost

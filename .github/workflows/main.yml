@@ -11,7 +11,7 @@ jobs:
       - name: CWD
         run: pwd
       - name: stand up FusionAuth
-        run: "docker run --health-timeout=60s --health-cmd='bash check-fa.sh' --health-interval=2s --health-retries=10 -p 9011:9011 -d -e DATABASE_URL=jdbc:postgresql://postgres:5432/fusionauth -e DATABASE_ROOT_USERNAME=postgres -e DATABASE_ROOT_PASSWORD=postgres -e DATABASE_USERNAME=test -e DATABASE_PASSWORD=test123 -e FUSIONAUTH_APP_MEMORY=512M -e FUSIONAUTH_APP_RUNTIME_MODE=development -e FUSIONAUTH_APP_KICKSTART_FILE=/usr/local/fusionauth/kickstart/kickstart.json -e SEARCH_TYPE=database -v /home/runner/work/docker-github-workflow/docker-github-workflow/kickstart:/usr/local/fusionauth/kickstart fusionauth/fusionauth-app:latest"
+        run: "docker run --health-timeout=60s --health-cmd='bash check-fa.sh' --health-interval=2s --health-retries=10 -p 9011:9011 -e DATABASE_URL=jdbc:postgresql://postgres:5432/fusionauth -e DATABASE_ROOT_USERNAME=postgres -e DATABASE_ROOT_PASSWORD=postgres -e DATABASE_USERNAME=test -e DATABASE_PASSWORD=test123 -e FUSIONAUTH_APP_MEMORY=512M -e FUSIONAUTH_APP_RUNTIME_MODE=development -e FUSIONAUTH_APP_KICKSTART_FILE=/usr/local/fusionauth/kickstart/kickstart.json -e SEARCH_TYPE=database -v /home/runner/work/docker-github-workflow/docker-github-workflow/kickstart:/usr/local/fusionauth/kickstart fusionauth/fusionauth-app:latest"
       - name: sleep
         run: sleep 30
       - name: docker container

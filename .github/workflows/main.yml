@@ -24,10 +24,8 @@ jobs:
         #run: for c in `docker ps -q`; do docker container inspect $c; done
       - name: docker ps
         run: docker ps
-      - name: docker container
-        run: docker container ls
-      - name: docker networks
-        run: docker network ls
+      - name: logs
+        run: export CONTAINERID=`docker ps|grep fusionauth|awk '{print $1}'`; docker logs $CONTAINERID
       - name: Curl localhost
         run: curl -vv http://localhost:9011/api/status
     services:

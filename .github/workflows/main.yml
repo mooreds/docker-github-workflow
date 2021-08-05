@@ -52,5 +52,5 @@ jobs:
           FUSIONAUTH_APP_KICKSTART_FILE: /usr/local/fusionauth/kickstart/kickstart.json
           SEARCH_TYPE: database
         volumes:
-          - ./kickstart:/usr/local/fusionauth/kickstart
+          - $GITHUB_WORKSPACE/kickstart:/usr/local/fusionauth/kickstart
       

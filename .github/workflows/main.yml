@@ -30,7 +30,7 @@ jobs:
         image: fusionauth/fusionauth-app:latest
         ports:
           - 9011:9011
-        options: >-
+        #options: >-
           #--health-cmd 'curl --connect-timeout 2 -s -o /dev/null -w "%{http_code}" http://localhost:9011/api/status || exit 1;' 
           #--health-interval 10s
           #--health-timeout 5s

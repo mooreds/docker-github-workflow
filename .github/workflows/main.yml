@@ -15,7 +15,7 @@ jobs:
       - name: docker networks
         run: docker network ls
       - name: Curl localhost
-        run: curl http://localhost:9011/api/status
+        run: curl -vv http://localhost:9011/api/status
     services:
       # Label used to access the service container
       postgres:

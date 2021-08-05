@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to stand up FusionAuth
     env:
+      # if you change these, change them in the services container too
       POSTGRES_USER: postgres2
       POSTGRES_PASSWORD: postgres2
       FUSIONAUTH_VERSION: 1.29.0

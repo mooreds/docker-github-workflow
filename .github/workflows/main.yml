@@ -8,6 +8,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Echo something
         run: echo "hi"
+      - name: CWD
+        run: pwd
       - name: sleep
         run: sleep 15
       - name: docker container

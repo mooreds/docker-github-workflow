@@ -11,11 +11,11 @@ jobs:
       - name: CWD
         run: pwd
       - name: create database
-        run: export PGPASSWORD='postgres'; psql -h 'localhost' -U 'postgres' -c 'create database fusionauth;'
+        run: export PGPASSWORD='postgres'; psql -h 'postgres' -U 'postgres' -c 'create database fusionauth;'
       - name: get ddl
         run: curl -o scripts.zip https://files.fusionauth.io/products/fusionauth/1.29.0/fusionauth-database-schema-1.29.0.zip; unzip scripts.zip
       - name: create database2
-        run: export PGPASSWORD='postgres'; cat postgresql.sql | psql -h 'localhost' -U 'postgres' 
+        run: export PGPASSWORD='postgres'; cat postgresql.sql | psql -h 'postgres' -U 'postgres' 
       - name: stand up FusionAuth
         run: "docker run -d --health-timeout=60s --health-cmd='bash check-fa.sh' --health-interval=2s --health-retries=10 -p 9011:9011 -e DATABASE_URL=jdbc:postgresql://localhost:5432/fusionauth -e DATABASE_ROOT_USERNAME=postgres -e DATABASE_ROOT_PASSWORD=postgres -e DATABASE_USERNAME=postgres -e DATABASE_PASSWORD=postgres -e FUSIONAUTH_APP_MEMORY=512M -e FUSIONAUTH_APP_RUNTIME_MODE=development -e FUSIONAUTH_APP_KICKSTART_FILE=/usr/local/fusionauth/kickstart/kickstart.json -e SEARCH_TYPE=database -v /home/runner/work/docker-github-workflow/docker-github-workflow/kickstart:/usr/local/fusionauth/kickstart fusionauth/fusionauth-app:latest"
       - name: sleep

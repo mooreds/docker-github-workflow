@@ -9,7 +9,7 @@ jobs:
       - name: Echo something
         run: echo "hi"
       - name: Curl localhost
-        run: curl --connect-timeout 2 -s http://localhost:9011/api/status
+        run: curl http://localhost:9011/api/status
     services:
       # Label used to access the service container
       postgres:

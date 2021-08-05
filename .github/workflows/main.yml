@@ -8,6 +8,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Echo something
         run: echo "hi"
+      - name: sleep
+        run: sleep 15
+      - name: docker containers
+        run: docker containers ls
+      - name: docker networks
+        run: docker network ls
       - name: Curl localhost
         run: curl http://localhost:9011/api/status
     services:

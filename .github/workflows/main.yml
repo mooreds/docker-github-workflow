@@ -18,7 +18,7 @@ jobs:
       #- name: Start FusionAuth
         #run: bash start-fusionauth.sh $POSTGRES_USER $POSTGRES_PASSWORD $FUSIONAUTH_VERSION
       - name: up
-        run: docker-compose -d up
+        run: docker-compose up -d
       - name: Sleep
         run: sleep 30
       #- name: logs for debugging

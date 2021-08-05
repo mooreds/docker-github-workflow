@@ -12,7 +12,7 @@ jobs:
         run: bash create-db.sh postgres postgres 1.29.0
       - name: Start FusionAuth
         run: bash start-fusionauth.sh postgres postgres 1.29.0
-      - name: sleep
+      - name: Sleep
         run: sleep 30
       #- name: logs for debugging
         #run: export CONTAINERID=`docker ps|grep fusionauth|awk '{print $1}'`; docker logs $CONTAINERID

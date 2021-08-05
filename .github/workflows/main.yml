@@ -20,16 +20,16 @@ jobs:
         run: docker network ls
       - name: stand up fusionauth
         run: "export NET=`docker network ls |grep github_network|awk '{print $2}'`; docker run --network=$NET -d --health-timeout=60s --health-cmd='bash check-fa.sh' --health-interval=2s --health-retries=10 -p 9011:9011 -e DATABASE_URL=jdbc:postgresql://postgres:5432/fusionauth -e DATABASE_ROOT_USERNAME=postgres -e DATABASE_ROOT_PASSWORD=postgres -e DATABASE_USERNAME=postgres -e DATABASE_PASSWORD=postgres -e FUSIONAUTH_APP_MEMORY=512M -e FUSIONAUTH_APP_RUNTIME_MODE=development -e FUSIONAUTH_APP_KICKSTART_FILE=/usr/local/fusionauth/kickstart/kickstart.json -e SEARCH_TYPE=database -v /home/runner/work/docker-github-workflow/docker-github-workflow/kickstart:/usr/local/fusionauth/kickstart fusionauth/fusionauth-app:latest"
-      - name: sleep
-        run: sleep 30
+      #- name: sleep
+        #run: sleep 30
       #- name: see networks
         #run: for c in `docker ps -q`; do docker container inspect $c; done
-      - name: docker ps
-        run: docker ps
-      - name: logs
-        run: export CONTAINERID=`docker ps|grep fusionauth|awk '{print $1}'`; docker logs $CONTAINERID
+      #- name: docker ps
+        #run: docker ps
+      #- name: logs
+        #run: export CONTAINERID=`docker ps|grep fusionauth|awk '{print $1}'`; docker logs $CONTAINERID
       - name: Curl localhost
-        run: curl -vv http://localhost:9011/api/status
+        run: curl -vv -H 'Authorization: 4737ea8520bd454caabb7cb3d36e14bc1832c0d3f70a4189b82598670f11b1bd' http://localhost:9011/api/tenants
     services:
       # Label used to access the service container
       postgres:

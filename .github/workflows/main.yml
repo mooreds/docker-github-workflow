@@ -34,6 +34,11 @@ jobs:
         image: fusionauth/fusionauth-app:latest
         ports:
           - 9011:9011
+        options: >-
+          --health-cmd bash -c '[[ $(curl --connect-timeout 2 -s -o /dev/null -w ''%{http_code}'' http://localhost:9011/api/status)" == 200 ]] || exit 1;' 
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
         env:
           DATABASE_URL: jdbc:postgresql://postgres:5432/fusionauth
           DATABASE_ROOT_USERNAME: ${POSTGRES_USER}

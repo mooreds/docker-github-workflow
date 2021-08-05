@@ -6,12 +6,16 @@ jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     name: A job to stand up FusionAuth
+    env:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      FUSIONAUTH_VERSION: 1.29.0
     steps:
       - uses: actions/checkout@v2
       - name: Create database
-        run: bash create-db.sh postgres postgres 1.29.0
+        run: bash create-db.sh $POSTGRES_USER $POSTGRES_PASSWORD $FUSIONAUTH_VERSION
       - name: Start FusionAuth
-        run: bash start-fusionauth.sh postgres postgres 1.29.0
+        run: bash start-fusionauth.sh $POSTGRES_USER $POSTGRES_PASSWORD $FUSIONAUTH_VERSION
       - name: Sleep
         run: sleep 30
       #- name: logs for debugging

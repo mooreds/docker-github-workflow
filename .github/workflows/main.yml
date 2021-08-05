@@ -10,8 +10,8 @@ jobs:
         run: echo "hi"
       - name: CWD
         run: pwd
-      - name: sleep
-        run: sleep 15
+      - stand up FusionAuth
+        run: docker run -p 9011:9011 -d -e DATABASE_URL=jdbc:postgresql://postgres:5432/fusionauth -e DATABASE_ROOT_USERNAME=${POSTGRES_USER} -e DATABASE_ROOT_PASSWORD=${POSTGRES_PASSWORD} -e DATABASE_USERNAME=test -e DATABASE_PASSWORD=test123 -e FUSIONAUTH_APP_MEMORY=512M -e FUSIONAUTH_APP_RUNTIME_MODE=development -e FUSIONAUTH_APP_KICKSTART_FILE=/usr/local/fusionauth/kickstart/kickstart.json -e SEARCH_TYPE: database -v /home/runner/work/docker-github-workflow/docker-github-workflow/kickstart:/usr/local/fusionauth/kickstart fusionauth/fusionauth-app:latest 
       - name: docker container
         run: docker container ls
       - name: docker networks
@@ -33,26 +33,3 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-      fusionauth:
-        # Docker Hub image
-        image: fusionauth/fusionauth-app:latest
-        ports:
-          - 9011:9011
-        #options: >-
-          #--health-cmd 'curl --connect-timeout 2 -s -o /dev/null -w "%{http_code}" http://localhost:9011/api/status || exit 1;' 
-          #--health-interval 10s
-          #--health-timeout 5s
-          #--health-retries 10
-        env:
-          DATABASE_URL: jdbc:postgresql://postgres:5432/fusionauth
-          DATABASE_ROOT_USERNAME: ${POSTGRES_USER}
-          DATABASE_ROOT_PASSWORD: ${POSTGRES_PASSWORD}
-          DATABASE_USERNAME: test
-          DATABASE_PASSWORD: test123
-          FUSIONAUTH_APP_MEMORY: 512M
-          FUSIONAUTH_APP_RUNTIME_MODE: development
-          FUSIONAUTH_APP_KICKSTART_FILE: /usr/local/fusionauth/kickstart/kickstart.json
-          SEARCH_TYPE: database
-        volumes:
-          - /home/runner/work/docker-github-workflow/docker-github-workflow/kickstart:/usr/local/fusionauth/kickstart
-      

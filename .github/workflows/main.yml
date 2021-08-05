@@ -49,6 +49,8 @@ jobs:
           DATABASE_PASSWORD: test123
           FUSIONAUTH_APP_MEMORY: 512M
           FUSIONAUTH_APP_RUNTIME_MODE: development
-          FUSIONAUTH_APP_URL: http://fusionauth:9011
+          FUSIONAUTH_APP_KICKSTART_FILE: /usr/local/fusionauth/kickstart/kickstart.json
           SEARCH_TYPE: database
+        volumes:
+          - ./kickstart:/usr/local/fusionauth/kickstart
       

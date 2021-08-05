@@ -51,8 +51,8 @@ jobs:
           DATABASE_PASSWORD: test123
           FUSIONAUTH_APP_MEMORY: 512M
           FUSIONAUTH_APP_RUNTIME_MODE: development
-          #FUSIONAUTH_APP_KICKSTART_FILE: /usr/local/fusionauth/kickstart/kickstart.json
+          FUSIONAUTH_APP_KICKSTART_FILE: /usr/local/fusionauth/kickstart/kickstart.json
           SEARCH_TYPE: database
-        #volumes:
-          #- $GITHUB_WORKSPACE/kickstart:/usr/local/fusionauth/kickstart
+        volumes:
+          - /home/runner/work/docker-github-workflow/docker-github-workflow/kickstart:/usr/local/fusionauth/kickstart
       

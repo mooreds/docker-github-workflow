@@ -7,8 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to stand up FusionAuth
     env:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres2
+      POSTGRES_PASSWORD: postgres2
       FUSIONAUTH_VERSION: 1.29.0
     steps:
       - uses: actions/checkout@v2
@@ -18,8 +18,8 @@ jobs:
         run: bash start-fusionauth.sh $POSTGRES_USER $POSTGRES_PASSWORD $FUSIONAUTH_VERSION
       - name: Sleep
         run: sleep 30
-      - name: logs for debugging
-        run: docker logs `docker ps|grep fusionauth|awk '{print $1}'`
+      #- name: logs for debugging
+        #run: docker logs `docker ps|grep fusionauth|awk '{print $1}'`
       - name: Interact with FusionAuth
         run: "curl -vv -H 'Authorization: 4737ea8520bd454caabb7cb3d36e14bc1832c0d3f70a4189b82598670f11b1bd' http://localhost:9011/api/tenant |grep allowEmailChangeWhenGated"
       - name: Shut down FusionAuth
@@ -31,8 +31,8 @@ jobs:
         image: postgres
         # Provide the password for postgres
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: $POSTGRES_USER
+          POSTGRES_PASSWORD: $POSTGRES_PASSWORD
         # Set health checks to wait until postgres has started
         ports:
           - 5432:5432

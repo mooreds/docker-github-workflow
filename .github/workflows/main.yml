@@ -12,7 +12,7 @@ jobs:
       FUSIONAUTH_VERSION: 1.29.0
     steps:
       - uses: actions/checkout@v2
-      - uses: mooreds/docker-github-action@v1.0.1
+      - uses: mooreds/docker-github-action@v1.0.2
       - name: Sleep
         run: sleep 30
       #- name: up
